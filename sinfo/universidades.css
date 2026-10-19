@@ -1,0 +1,610 @@
+
+/* ========================================
+   GUÍA UNIVERSITARIA — UNIVERSIDADES
+   Paleta: azul noche, terracota y crema
+======================================== */
+
+:root {
+    --azul: #25283D;
+    --azul-profundo: #1D2033;
+    --terracota: #C05C3F;
+    --terracota-oscuro: #A84932;
+    --durazno: #EAC4A8;
+    --crema: #F7EEE5;
+    --blanco: #FFFCF8;
+    --texto: #353548;
+    --texto-suave: #777486;
+    --borde: #E9DDD3;
+    --sombra: 0 12px 35px rgba(37, 40, 61, 0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+body {
+    font-family: "DM Sans", Arial, Helvetica, sans-serif;
+    background: var(--crema);
+    color: var(--texto);
+    line-height: 1.6;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--crema);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+}
+
+.imagen-gorrito {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+
+/* ENCABEZADO */
+
+.encabezado {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    padding: 18px 8%;
+    background: var(--azul);
+    color: var(--blanco);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 5px 22px rgba(29, 32, 51, 0.12);
+}
+
+.logo {
+    color: var(--blanco);
+    font-family: "Space Grotesk", Arial, sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: -0.7px;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.menu a {
+    position: relative;
+    color: #F7EEE5;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.25s ease;
+}
+
+.menu a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -7px;
+    width: 0;
+    height: 2px;
+    background: var(--durazno);
+    transition: width 0.25s ease;
+}
+
+.menu a:hover,
+.menu .activo {
+    color: var(--durazno);
+}
+
+.menu a:hover::after,
+.menu a.activo::after {
+    width: 100%;
+}
+
+/* PRESENTACIÓN DE UNIVERSIDADES */
+
+.encabezado-universidades {
+    position: relative;
+    overflow: hidden;
+    padding: 85px 8%;
+    text-align: center;
+    background:
+        radial-gradient(
+            circle at 12% 20%,
+            rgba(234, 196, 168, 0.32),
+            transparent 32%
+        ),
+        linear-gradient(135deg, #F7EEE5 0%, #F2DFD1 100%);
+    border-bottom: 1px solid var(--borde);
+}
+
+.contenido-universidades {
+    position: relative;
+    z-index: 1;
+    max-width: 850px;
+    margin: auto;
+}
+
+.etiqueta {
+    display: inline-block;
+    color: var(--terracota-oscuro);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+}
+
+.contenido-universidades h1 {
+    font-family: "Space Grotesk", Arial, sans-serif;
+    font-size: clamp(34px, 5vw, 52px);
+    line-height: 1.12;
+    letter-spacing: -1.8px;
+    color: var(--azul);
+    margin-bottom: 22px;
+}
+
+.descripcion {
+    max-width: 720px;
+    margin: 0 auto;
+    font-size: 17px;
+    line-height: 1.85;
+    color: var(--texto-suave);
+}
+
+/* BUSCADOR */
+
+.seccion-buscador {
+    padding: 38px 8% 5px;
+    text-align: center;
+}
+
+#buscador {
+    width: 100%;
+    max-width: 700px;
+    padding: 16px 20px;
+    border: 1px solid var(--borde);
+    border-radius: 14px;
+    background: var(--blanco);
+    color: var(--azul);
+    font: inherit;
+    font-size: 15px;
+    outline: none;
+    box-shadow: 0 5px 18px rgba(37, 40, 61, 0.04);
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+#buscador::placeholder {
+    color: #A29BA5;
+}
+
+#buscador:focus {
+    border-color: var(--terracota);
+    box-shadow: 0 0 0 4px rgba(192, 92, 63, 0.12);
+}
+
+/* CONTENEDOR DE TARJETAS */
+
+.seccion-universidades {
+    padding: 45px 5% 85px;
+}
+
+.contenedor-universidades {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 28px;
+    width: 100%;
+    max-width: 1120px;
+    margin: 30px auto;
+}
+
+/* TARJETAS */
+
+.universidad-card {
+    width: 100%;
+    min-width: 0;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--blanco);
+    border: 1px solid rgba(233, 221, 211, 0.9);
+    border-radius: 18px;
+    box-shadow: var(--sombra);
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.universidad-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--durazno);
+    box-shadow: 0 18px 40px rgba(37, 40, 61, 0.13);
+}
+
+/* FOTOGRAFÍA DEL EDIFICIO */
+
+.imagen-edificio {
+    width: 100%;
+    height: 235px;
+    overflow: hidden;
+    background: #E8DDD3;
+}
+
+.imagen-edificio img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.universidad-card:hover .imagen-edificio img {
+    transform: scale(1.035);
+}
+
+/* LOGOTIPO */
+
+.logo-universidad {
+    width: 100%;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background: var(--blanco);
+    border-bottom: 1px solid #F0E7DF;
+}
+
+.logo-universidad img {
+    display: block;
+    max-width: 160px;
+    max-height: 75px;
+    object-fit: contain;
+}
+
+/* INFORMACIÓN */
+
+.informacion-universidad {
+    padding: 25px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.informacion-universidad h2 {
+    font-family: "Space Grotesk", Arial, sans-serif;
+    color: var(--azul);
+    font-size: 23px;
+    line-height: 1.3;
+    letter-spacing: -0.4px;
+    margin-bottom: 12px;
+}
+
+.tipo {
+    display: inline-block;
+    margin-bottom: 16px;
+    padding: 6px 12px;
+    background: var(--crema);
+    color: var(--terracota-oscuro);
+    border: 1px solid #EBD3C3;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.informacion-universidad p {
+    color: var(--texto-suave);
+    font-size: 14px;
+    line-height: 1.85;
+    margin-bottom: 15px;
+}
+
+.direccion {
+    color: var(--azul) !important;
+    font-weight: 700;
+    margin-top: 5px;
+}
+
+/* BOTONES */
+
+.boton-ubicacion,
+.boton-carreras {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 11px 15px;
+    margin-top: 7px;
+    margin-right: 5px;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 700;
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.boton-ubicacion {
+    background: var(--crema);
+    border-color: #EBD3C3;
+    color: var(--terracota-oscuro);
+}
+
+.boton-ubicacion:hover {
+    background: #F0DFD1;
+    border-color: var(--durazno);
+    transform: translateY(-2px);
+}
+
+.boton-carreras {
+    background: var(--terracota);
+    color: white;
+}
+
+.boton-carreras:hover {
+    background: var(--terracota-oscuro);
+    transform: translateY(-2px);
+}
+
+
+/* PIE DE PÁGINA CON DEGRADADO */
+footer {
+    background: linear-gradient(
+        135deg,
+        #25283D 0%,
+        #34334B 55%,
+        #A84932 100%
+    );
+    color: #F7EEE5;
+    text-align: center;
+    padding: 28px 20px;
+    margin-top: 50px;
+}
+
+footer p {
+    margin: 6px 0;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+footer a {
+    color: #EAC4A8;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #FFFCF8;
+}
+
+
+/* MENÚ MÓVIL */
+
+#menu-toggle {
+    display: none;
+}
+
+.boton-menu {
+    display: none;
+    font-size: 30px;
+    color: var(--blanco);
+    cursor: pointer;
+    padding: 5px;
+    line-height: 1;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.boton-menu:hover {
+    color: var(--durazno);
+    transform: scale(1.08);
+}
+
+/* TABLET Y CELULAR */
+
+@media (max-width: 768px) {
+    .encabezado {
+        position: sticky;
+        padding: 16px 5%;
+    }
+
+    .boton-menu {
+        display: block;
+        position: relative;
+        z-index: 1101;
+    }
+
+    .menu {
+        position: absolute;
+        top: calc(100% - 1px);
+        right: 15px;
+        width: min(280px, calc(100vw - 30px));
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+        padding: 12px;
+        background: linear-gradient(
+            155deg,
+            var(--azul),
+            #39364E
+        );
+        border: 1px solid rgba(234, 196, 168, 0.18);
+        border-radius: 0 0 16px 16px;
+        box-shadow: 0 15px 35px rgba(29, 32, 51, 0.24);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(-12px) scale(0.98);
+        transform-origin: top right;
+        transition:
+            opacity 0.3s ease,
+            transform 0.3s ease,
+            visibility 0.3s ease;
+    }
+
+    #menu-toggle:checked ~ .menu {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0) scale(1);
+    }
+
+    .menu a {
+        padding: 13px 16px;
+        border-radius: 9px;
+        font-size: 15px;
+        font-weight: 600;
+        opacity: 0;
+        transform: translateY(-12px);
+        transition:
+            opacity 0.3s ease,
+            transform 0.3s ease,
+            background 0.25s ease,
+            color 0.25s ease;
+    }
+
+    .menu a::after {
+        display: none;
+    }
+
+    #menu-toggle:checked ~ .menu a {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    #menu-toggle:checked ~ .menu a:nth-child(1) {
+        transition-delay: 0.05s;
+    }
+
+    #menu-toggle:checked ~ .menu a:nth-child(2) {
+        transition-delay: 0.12s;
+    }
+
+    #menu-toggle:checked ~ .menu a:nth-child(3) {
+        transition-delay: 0.19s;
+    }
+
+    #menu-toggle:checked ~ .menu a:nth-child(4) {
+        transition-delay: 0.26s;
+    }
+
+    .menu a:hover {
+        background: rgba(247, 238, 229, 0.1);
+        color: var(--durazno);
+        transform: translateX(4px);
+    }
+
+    .menu a.activo {
+        background: rgba(234, 196, 168, 0.16);
+        color: var(--durazno);
+    }
+
+    .encabezado-universidades {
+        padding: 65px 6%;
+    }
+
+    .contenido-universidades h1 {
+        font-size: clamp(32px, 6vw, 42px);
+    }
+
+    .descripcion {
+        font-size: 16px;
+    }
+
+    .seccion-universidades {
+        padding: 35px 4% 65px;
+    }
+
+    .contenedor-universidades {
+        grid-template-columns: 1fr;
+        width: 100%;
+        max-width: 540px;
+        gap: 24px;
+    }
+
+    .seccion-buscador {
+        padding: 30px 5% 5px;
+    }
+}
+
+/* CELULARES PEQUEÑOS */
+
+@media (max-width: 500px) {
+    .logo {
+        font-size: 20px;
+    }
+
+    .encabezado-universidades {
+        padding: 55px 6%;
+    }
+
+    .contenido-universidades h1 {
+        letter-spacing: -1px;
+    }
+
+    .descripcion {
+        font-size: 15px;
+        line-height: 1.8;
+    }
+
+    .informacion-universidad {
+        padding: 20px;
+    }
+
+    .informacion-universidad h2 {
+        font-size: 21px;
+    }
+
+    .imagen-edificio {
+        height: 200px;
+    }
+
+    .boton-ubicacion,
+    .boton-carreras {
+        width: 100%;
+        display: flex;
+        margin-right: 0;
+        margin-bottom: 8px;
+    }
+
+    footer {
+        padding: 28px 6%;
+    }
+}
+
+/* REDUCIR ANIMACIONES SI EL USUARIO LO PREFIERE */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
